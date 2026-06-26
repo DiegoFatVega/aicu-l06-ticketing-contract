@@ -52,13 +52,6 @@ Campi mostrati nel diagramma:
 
 - title - accettato
 - description - accettato
-- priority - mancante
-- area - mancante
-- status - respinto
-- id - generato
-- attachments - respinto
-- owner - generato
-- createdAt - generato
 
 ## Campi Scartati O Rimandati
 

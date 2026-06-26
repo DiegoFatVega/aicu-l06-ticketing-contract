@@ -29,15 +29,11 @@ Classificare i dati prima di chiedere codice.
 
 | Campo | Stato | Motivo | Fonte |
 | --- | --- | --- | --- |
-| `title` | accettato | senza titolo, il ticket non ha valore | issue / contract / decisione / inferenza |
-| `description` | accettato | informazioni aggiuntive per approfondire il campo "title" | issue / contract / decisione / inferenza |
-| `priority` | mancante | non abbiamo deciso chi assegna la priortià | issue / contract / decisione / inferenza |
-| `area` | respinto | è fuori scope | issue / contract / decisione / inferenza |
-| `status` | respinto | è fuori scope | issue / contract / decisione / inferenza |
-| `id` | generato | viene creato quando serve la persistenza nel DB | issue / contract / decisione / inferenza |
-| `attachments` | respinto | è fuori scope | issue / contract / decisione / inferenza |
-| `owner` | generato | campo prelevato in automatico | issue / contract / decisione / inferenza |
-| `createdAt` | generato | campo creato in automatico, definisce quanto è recente | issue / contract / decisione / inferenza |
+| `title` | accettato | senza titolo, il ticket non ha valore | contract |
+| `description` | accettato | informazioni aggiuntive per approfondire il campo "title" | contract |
+| `id` | generato | viene creato quando serve la persistenza nel DB | L05 |
+| `owner` | generato | campo prelevato in automatico | L05 |
+| `createdAt` | generato | campo creato in automatico, definisce quanto è recente | L05 |
 
 ## Mermaid Leggero
 
@@ -48,7 +44,6 @@ erDiagram
     TICKET {
         title string "accettato" 
         description string "accettato"
- 
     }
 
 ```
@@ -70,7 +65,13 @@ Campi mostrati nel diagramma:
 | Campo | Decisione | Motivo |
 | --- | --- | --- |
 | attachments | respinto | fuori scope |
-| priority | rimandato | non è specificato, si rischia di andare fuori scope |
+| priority | rimandato | da valutare in L07 |
+| status | rimandato | non è specificato, si rischia di andare fuori scope |
+| id | rimandato | servirà per l'identificazione univoca |
+| owner | rimandato | richiede autorizzazione |
+| createdAt | rimandato | non necessario per completare il primo slice |
+| area | rimandato | potrebbe servire più avanti |
+
 
 ## Domande Per L07
 

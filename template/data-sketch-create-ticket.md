@@ -29,15 +29,15 @@ Classificare i dati prima di chiedere codice.
 
 | Campo | Stato | Motivo | Fonte |
 | --- | --- | --- | --- |
-| `title` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `description` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `priority` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `area` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `status` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `id` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `attachments` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `owner` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
-| `createdAt` | accettato / respinto / generato / mancante | [perche'] | issue / contract / decisione / inferenza |
+| `title` | accettato | senza titolo, il ticket non ha valore | issue / contract / decisione / inferenza |
+| `description` | accettato | informazioni aggiuntive per approfondire il campo "title" | issue / contract / decisione / inferenza |
+| `priority` | mancante | non abbiamo deciso chi assegna la priortià | issue / contract / decisione / inferenza |
+| `area` | respinto | è fuori scope | issue / contract / decisione / inferenza |
+| `status` | respinto | è fuori scope | issue / contract / decisione / inferenza |
+| `id` | generato | viene creato quando serve la persistenza nel DB | issue / contract / decisione / inferenza |
+| `attachments` | respinto | è fuori scope | issue / contract / decisione / inferenza |
+| `owner` | generato | campo prelevato in automatico | issue / contract / decisione / inferenza |
+| `createdAt` | generato | campo creato in automatico, definisce quanto è recente | issue / contract / decisione / inferenza |
 
 ## Mermaid Leggero
 
@@ -45,24 +45,40 @@ Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schem
 
 ```mermaid
 erDiagram
-  SUPPORT_REQUEST ||--|| TICKET : creates
-  TICKET {
-    string id "generato"
-  }
+    "ISSUE" ||--|| TICKET : creates
+    TICKET {
+        title accettato 
+        description accettato
+        priority mancante
+        area mancante
+        status respinto
+        id generato
+        attachments respinto
+        owner generato
+        createdAt generato
+ 
+    }
+
 ```
 
 Campi mostrati nel diagramma:
 
-- [campo] - [accettato/generato/respinto/mancante]
-- [campo] - [accettato/generato/respinto/mancante]
+- title - accettato
+- description - accettato
+- priority - mancante
+- area - mancante
+- status - respinto
+- id - generato
+- attachments - respinto
+- owner - generato
+- createdAt - generato
 
 ## Campi Scartati O Rimandati
 
 | Campo | Decisione | Motivo |
 | --- | --- | --- |
-| [campo] | respinto / rimandato | [motivo] |
-| [campo] | respinto / rimandato | [motivo] |
-| [campo] | respinto / rimandato | [motivo] |
+| attachments | respinto | fuori scope |
+| priority | rimandato | non è specificato, si rischia di andare fuori scope |
 
 ## Domande Per L07
 

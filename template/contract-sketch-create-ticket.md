@@ -72,20 +72,21 @@ Campi attesi:
 
 ```json
 {
-  priotrity: Urgentissimo; 
+  title: "";
+  description: ""
 }
 ```
 
 Motivo del rifiuto:
 
 ```txt
-  perchè è fuori scope
+  Il ticket è vuoto
 ```
 
 Risposta attesa:
 
 ```txt
-[status o errore atteso]
+  output atteso: Compila questi campi
 ```
 
 ## Payload Invalido 2

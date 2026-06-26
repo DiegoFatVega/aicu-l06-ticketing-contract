@@ -8,57 +8,55 @@ Serve creare ticket dal supporto.
 
 ## Fatti (Facts)
 
-- Siamo in una piccola applicazione js con express.
-- Non avrai accesso al codice, siamo in fase di planning.
-- L'applicazione contiene un sistema di autenticazione.
-- Solo chi è autenticato può creare dei ticket.
-- Esiste un DB relazionale che collega autori ai ticket inviati e alle note aggiunte (1 to many).
+- Siamo in una piccola applicazione js con express
+- Non avrai accesso al codice, siamo in fase di planning
+- I ticket hanno un ID univoco
+- L'applicazione contiene un sistema di autenticazione
+- Solo chi è autenticato può aggiungere nuovi ticket
+- Abbiamo un Database che collega autori ai ticket inviati e alle note aggiunte in una relazione One to Many
+
 
 ## Assunzioni (Assumptions)
 
-- Le note non possono contenere solo spazi vuoti.
-- Le note non devono avere minimo 100 caratteri.
-- Le note non possono superare i 3000 caratteri.
-- Le note saranno visualizzate nella stessa pagina del ticket.
-- Un ticket può avere più note.
-- La nota deve avere obbligatoriamente timestamp e il campo autore (NomeUtente).
-- Le note potranno essere visualizzate solo da chi avrà il ruolo denominato "Supporto tecnico", dall'"Admin" e dall'autore stesso della nota.
-- In caso di empty-state, visualizza un messaggio di errore e riporta l'utente alla creazione della nota.
+- I ticket non possono essere vuoti quindi una nota con solo spazi non può essere considerata valida.
+- I ticket non devono avere meno di 100 caratteri e non possono superare i 3000
+- Il ticket deve avere un timestamp e il campo autore (obbiligatorio) che sarà il nome utente 
+- In caso di empty-state visualizza un messaggio d'errore e riporta l'utente alla creazione del ticket
 
 ## Domande Aperte (Questions)
 
-- E' necessario che i ticket abbiano un sistema di priorità? se la risposta è si, quanti gradi di priorità ci sono?.
-- C'è un limite di ticket giornalieri?.
-- Possono esserci allegati nel ticket? di quanto è la dimensione massima? quali sono le estensioni dei file accettati e quali non?.
+- È necessario che i ticket abbiano un sistema di priorità? Se sì quanti gradi di priorità ci sono?
+- C'è un limite di ticket giornalieri? 
+
 
 ## Decisione (Decision)
 
 Per questo slice, "creare ticket" significa:
 
 ```txt
-Avere la possibilità di aggiungere una nota più o meno estesa che abbia una flag che ne qualifichi il grado di priorità.
+Avere la possibilità di aggiungere un ticket più o meno esteso che abbia una flag che ne qualifichi il grado di priorità
 ```
 
 ## Fuori Scope / Non-Obiettivi (Non-Goals)
 
-- Non creiamo codice.
-- No refactoring.
-- No modifiche a file che non siano prompt-critica-issue.md.
-- Non modificare la UI.
-- Non aggiungiamo funzioni oltre a quelle esplicitate.
-  
-## Criteri Di Accettazione (Acceptance Criteria).
+- Non creaimo codice
+- No Refactoring
+- No modifiche a file che non siano prompt-critica-issue.md
+- Non modifichiamo la UI 
+- Non aggiungiamo funzioni non esplicitate
 
-1. La nota che rispetta i parametri assegnati viene visualizzata correttamente e la nota viene aggiunta al database, e deve avere un id univoco e collegato con l'autore e al ticket di appartenenza.
-2. La nota che non rispetta i parametri non viene aggiunta al DB e la pagina di rimanda alla pagina dei ticket.
-3. La nota non è visibile se non sei loggato
+## Criteri Di Accettazione (Acceptance Criteria)
+
+1. Il ticket che rispetta i parametri assegnati viene visualizzata correttattamente e viene aggiunta al DB con un ID univoco e collegato all'autore e al ticket di appartenza 
+2. Il ticket che non rispetta i paramteri non viene aggiunta al DB e si torna sulla creazione del ticket.
+3. Il ticket non è visibile se non si è loggati
 
 ## Piano Di Verifica Manuale (Manual Test Plan)
 
-- Input: Inserimento di una nota corretta. Output: La nota che rispetta i parametri viene visualizzata correttamente e viene inserita nel DB.
-- Input: inserimento di una nota non conforme. Output: messaggio di errore e renderizzamento sulla pagina dei ticket
-- Input: accesso al ticket senza autenticazione. Output: nessuna nota visibile.
-- 
+- Input: Inserimento di un ticket corretto. Output: Il ticket se rispetta le condizioni, viene visualizzato correttamente e viene inserito nel DB
+- Input: Inserimento di un ticket non conforme. Output: Visualizzato messaggio di errore "Ticket non conforme" e reindirizzamento sulla pagina del ticket.
+- Input: Accesso al ticket senza autenticazione. Output: Nessuna ticket visibile.
+
 ## Note Per L06
 
 - [quale payload andra' chiarito]

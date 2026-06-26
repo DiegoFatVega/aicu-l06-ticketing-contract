@@ -31,53 +31,55 @@ Serve creare ticket dal supporto.
 
 | Superficie | Cosa riguarda | Nota |
 | --- | --- | --- |
-| UI | [cosa inserisce o vede l'utente] | [nota] |
-| API / azione | [input e output attesi] | [nota] |
-| Dati | [campi conservati o generati] | [nota] |
-| Verifica | [come controlli il comportamento] | [nota] |
+| UI | title, description | serve all'utente/supporto |
+| API / azione | input: title and description, output: ticket creato | flusso necessario |
+| Dati | title, description, owner, createdAt | dati minimi per identificare il ticket |
+| Verifica | a campi validi creati, creo un ticket visibile |  |
 
 ## Action
 
 Per questo slice, `create ticket` significa:
 
 ```txt
-[scrivi una decisione minima e verificabile]
+Compilare almeno due campi testuali per la creazione di un ticket.
 ```
 
 ## Payload Valido
 
 ```json
 {
+  title: "l'app pincoPallino ha smesso di funzionare";
+  description: "ogni volta che provo ad entrare, l'applicazione va in crash"
 }
 ```
 
 Perche' e' valido:
 
-- [motivo 1]
-- [motivo 2]
+- il payload è completo in tutti i campi richiesti
 
 ## Risposta Attesa Di Successo
 
 ```txt
-[status o risultato atteso]
+  Status: 201, "il tuo ticket è stato creato con successo"
 ```
 
 Campi attesi:
 
-- [campo generato o restituito]
-- [campo confermato]
+- createdAt è un campo generato
+- title e description sono i campi confermati
 
 ## Payload Invalido 1
 
 ```json
 {
+  priotrity: Urgentissimo; 
 }
 ```
 
 Motivo del rifiuto:
 
 ```txt
-[perche' e' invalido]
+  perchè è fuori scope
 ```
 
 Risposta attesa:

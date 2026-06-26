@@ -45,17 +45,9 @@ Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schem
 
 ```mermaid
 erDiagram
-    "ISSUE" ||--|| TICKET : creates
     TICKET {
-        title accettato 
-        description accettato
-        priority mancante
-        area mancante
-        status respinto
-        id generato
-        attachments respinto
-        owner generato
-        createdAt generato
+        title string "accettato" 
+        description string "accettato"
  
     }
 
